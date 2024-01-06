@@ -16,10 +16,10 @@ public:
 	int GetLength();
 	
 	// Get texutre by name specified in loadTexture, or return null
-	sf::Texture* GetTexture(std::string name);
+	sf::Texture* GetByName(std::string name);
 
 	// Get texutre by index in map, or return null
-	sf::Texture* GetTexture(int index);
+	sf::Texture* GetByIndex(int index);
 
 	// Loads the texture and returns a pointer to it
 	// If it is already loaded, this function just returns it

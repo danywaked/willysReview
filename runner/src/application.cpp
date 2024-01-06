@@ -88,10 +88,10 @@ namespace runner
        m_minOfScreen = 0.0f;
        loadHighScore();
        
-       m_player.SetUp(m_AssetsManagement.GetTexture(kPlayerID), m_minOfScreen, (float)m_window.getSize().x);
-       m_ball.SetUp(m_AssetsManagement.GetTexture(kBallID), m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
-       m_brick.SetUp(m_AssetsManagement.GetTexture(kBrickID));
-       m_parallaxBackground.SetUp(m_AssetsManagement.GetTexture(kFallingStarID));
+       m_player.SetUp(m_AssetsManagement.GetByName(kPlayerID), m_minOfScreen, (float)m_window.getSize().x);
+       m_ball.SetUp(m_AssetsManagement.GetByName(kBallID), m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
+       m_brick.SetUp(m_AssetsManagement.GetByName(kBrickID));
+       m_parallaxBackground.SetUp(m_AssetsManagement.GetByName(kFallingStarID));
    }
 
    bool Application::update()

@@ -52,23 +52,19 @@ int AssetsManagement::GetLength()
 }
 
 // Get Texture by Name
-sf::Texture* AssetsManagement::GetTexture(std::string name)
+sf::Texture* AssetsManagement::GetByName(std::string name)
 {
-
-    // See if we have already loaded this texture
     if (m_textures.find(name) != m_textures.end()) {
         return m_textures[name];
     }
-    else {
-        return NULL;
-    }
+    return NULL;
 }
 
 // Get Texture by Index
-sf::Texture* AssetsManagement::GetTexture(int index)
+sf::Texture* AssetsManagement::GetByIndex(int index)
 {
     // Stay DRY and reuse get by name, but get string name from vector with index
-    return GetTexture(m_order.at(index));
+    return GetByName(m_order.at(index));
 }
 
 // Assign a Texture a Name (for accessing via get) and path (to load from)
@@ -85,11 +81,6 @@ sf::Texture* AssetsManagement::LoadTexture(std::string name, std::string path)
         m_order.push_back(name);
         return m_textures[name];
     }
-    else
-    {
-        // Could not load the file
-        delete texture;
-        return NULL;
-    }
-
+    delete texture;
+    return NULL;
 }
