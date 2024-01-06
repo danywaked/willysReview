@@ -1,15 +1,5 @@
 #include "Brick.h"
 
-Brick::Brick()
-{
-
-};
-
-Brick::~Brick()
-{
-
-};
-
 void Brick::SetUp(sf::Texture* texture)
 {
 	m_texture = *texture;
@@ -41,12 +31,6 @@ void Brick::SetUp(sf::Texture* texture)
 	};
 }
 	
-
-void Brick::Update()
-{
-	
-};
-
 void Brick::Restart()
 {
 	m_brickObject.clear();

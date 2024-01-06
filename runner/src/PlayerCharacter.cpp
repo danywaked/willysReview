@@ -10,11 +10,6 @@ PlayerCharacter::PlayerCharacter()
 	pressedRight = false;
 };
 
-PlayerCharacter::~PlayerCharacter()
-{
-
-};
-
 void PlayerCharacter::SetUp(sf::Texture* texture, float min, float max)
 {
 	//Thinking is easier to read if I set variables in a SetUp class
