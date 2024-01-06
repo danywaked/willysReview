@@ -252,9 +252,7 @@ namespace runner
            std::cout << " right side someting" << std::endl;
        };
        if (AxisAlignedBoundingBox(m_player.m_playerSprite, m_ball.m_ballSprite))
-       {
-           
-           m_ball.hasCollided = true;
+       {           
            m_ball.m_direction.y = -m_ball.m_direction.y;
            //std::cout << "hitted a player" << std::endl;
        }

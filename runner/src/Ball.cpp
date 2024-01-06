@@ -15,7 +15,6 @@ sf::Vector2f Normalized(const sf::Vector2f& rhs) {
 Ball::Ball()
 {
 	speed = 200.0f;
-	hasCollided = false;
 	positionX = 500.0f;
 	positionY = 400.0f;
 	m_direction.x = positionX;

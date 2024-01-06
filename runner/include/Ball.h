@@ -17,7 +17,6 @@ public:
 	sf::IntRect worldBounds;
 	sf::Sprite m_ballSprite;
 	sf::Vector2f m_direction;
-	bool hasCollided;
 	float speed;
 
 };
