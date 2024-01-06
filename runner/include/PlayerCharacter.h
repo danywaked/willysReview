@@ -7,7 +7,8 @@ class PlayerCharacter
 	const float defualtMovmentSpeed;
 	const float positionY;
 	float positionX;
-	float minPositionX, maxPositionX;
+	float minPositionX;
+	float maxPositionX;
 public:
 	PlayerCharacter();
 	void SetUp(sf::Texture* texture, float min, float max);

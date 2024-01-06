@@ -264,7 +264,7 @@ namespace runner
            if (AxisAlignedBoundingBox(m_brick.m_brickObject[i].sprite, m_ball.m_ballSprite))
            {
                m_ball.m_direction.y = -m_ball.m_direction.y;
-               m_ball.m_speed += 10.0f;
+               m_ball.speed += 10.0f;
                m_brick.m_brickObject.erase(m_brick.m_brickObject.begin() + i);
                m_currentScore++;
                //std::cout << "hitted a brick" << std::endl;

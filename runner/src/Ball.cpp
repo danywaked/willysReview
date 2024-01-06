@@ -1,9 +1,21 @@
 #include "Ball.h"
 
+float Length(const sf::Vector2f& rhs)
+{
+	return std::sqrtf(rhs.x * rhs.x + rhs.y * rhs.y);
+};
+
+sf::Vector2f Normalized(const sf::Vector2f& rhs) {
+	float length = 1.0f / Length(rhs);
+	float x = rhs.x * length;
+	float y = rhs.y * length;
+	return sf::Vector2f{ x, y };
+}
+
 Ball::Ball()
 {
+	speed = 200.0f;
 	hasCollided = false;
-	m_speed = 200.0f;
 	positionX = 500.0f;
 	positionY = 400.0f;
 	m_direction.x = positionX;
@@ -25,22 +37,10 @@ void Ball::BallUpdate(float deltatime)
 {
 	WorldConstraining(positionX, positionY);
 	m_direction = Normalized(m_direction);
-	positionX += m_direction.x * m_speed * deltatime;
-	positionY += m_direction.y * m_speed * deltatime;
+	positionX += m_direction.x * speed * deltatime;
+	positionY += m_direction.y * speed * deltatime;
 	m_ballSprite.setPosition(positionX, positionY);
 };
-
-float Ball::Length(const sf::Vector2f& rhs)
-{
-	return std::sqrtf(rhs.x * rhs.x + rhs.y * rhs.y);
-};
-
-sf::Vector2f Ball::Normalized(const sf::Vector2f& rhs) {
-	float length = 1.0f / Length(rhs);
-	float x = rhs.x * length;
-	float y = rhs.y * length;
-	return sf::Vector2f{ x, y };
-}
 
 void Ball::WorldConstraining(float posX, float posY)
 {
@@ -60,9 +60,9 @@ void Ball::WorldConstraining(float posX, float posY)
 
 void Ball::Restart()
 {
-	m_speed = 200.0f;
 	positionX = 500.0f;
 	positionY = 400.0f;
 	m_direction.x = positionX;
 	m_direction.y = positionY;
+	speed = 200.0f;
 }
