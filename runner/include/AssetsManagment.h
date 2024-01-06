@@ -3,7 +3,6 @@
 #include "batch.hpp"
 class AssetsManagement
 {
-// AssetsManagment uppgift är att äga och hantera resourscer.
 public:
 	AssetsManagement();
 	~AssetsManagement();

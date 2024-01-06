@@ -2,7 +2,7 @@
 
 void Brick::SetUp(sf::Texture* texture)
 {
-	texture = *texture;
+	brickTexture = *texture;
 	Initialize();
 }
 	
@@ -19,7 +19,7 @@ void Brick::Initialize()
 	float y = 100;
 	for (auto& brick : brickVec)
 	{
-		brick.sprite.setTexture(texture);
+		brick.sprite.setTexture(brickTexture);
 		brick.positionX = x;
 		brick.positionY = y;
 		x += 100;

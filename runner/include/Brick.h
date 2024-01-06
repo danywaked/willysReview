@@ -11,7 +11,7 @@ struct BrickParts
 
 class Brick
 {
-	sf::Texture texture;
+	sf::Texture brickTexture;
 public:
 	void SetUp(sf::Texture* texture);
 	void Restart();

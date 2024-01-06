@@ -18,7 +18,6 @@ AssetsManagement::~AssetsManagement()
         delete texture;
         iter++;
     }
-
 };
 
 std::unordered_map< std::string, sf::Texture* > AssetsManagement::m_textures;
@@ -28,7 +27,7 @@ bool AssetsManagement::LoadFontFile(const std::string& filePath)
 {
     if(!m_font.loadFromFile(filePath))
     {
-        //error
+        printf("Font failed to load from file path");
         return false;
     }
     return true;
