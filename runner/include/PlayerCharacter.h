@@ -16,7 +16,7 @@ public:
 	void ProcessingInput(float deltatime);
 	void WorldConstrainingOnPositionX();
 	void Restart();
-	sf::Sprite m_playerSprite;
+	sf::Sprite playerSprite;
 	bool pressedLeft;
 	bool pressedRight;
 };

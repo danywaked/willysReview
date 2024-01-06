@@ -16,15 +16,15 @@ void PlayerCharacter::SetUp(sf::Texture* texture, float min, float max)
 	minPositionX = min;
 	maxPositionX = max;
 	positionX = 500.0f;
-	m_playerSprite.setTexture(*texture);
-	m_playerSprite.setPosition(positionX, positionY);
-	m_playerSprite.setScale(1.0f, 0.5f);
+	playerSprite.setTexture(*texture);
+	playerSprite.setPosition(positionX, positionY);
+	playerSprite.setScale(1.0f, 0.5f);
 };
 
 void PlayerCharacter::PlayerUpdate(float deltatime)
 {
 	ProcessingInput(deltatime);
-	m_playerSprite.setPosition(positionX, positionY);
+	playerSprite.setPosition(positionX, positionY);
 	WorldConstrainingOnPositionX();
 };
 

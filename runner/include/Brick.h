@@ -11,10 +11,10 @@ struct BrickParts
 
 class Brick
 {
-	sf::Texture m_texture;
+	sf::Texture texture;
 public:
 	void SetUp(sf::Texture* texture);
 	void Restart();
 	void Initialize();
-	std::vector<BrickParts> m_brickObject;
+	std::vector<BrickParts> brickVec;
 };

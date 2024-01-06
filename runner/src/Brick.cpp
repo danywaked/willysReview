@@ -2,24 +2,24 @@
 
 void Brick::SetUp(sf::Texture* texture)
 {
-	m_texture = *texture;
+	texture = *texture;
 	Initialize();
 }
 	
 void Brick::Restart()
 {
-	m_brickObject.clear();
+	brickVec.clear();
 	Initialize();
 }
 
 void Brick::Initialize()
 {
-	m_brickObject.resize(13);
+	brickVec.resize(13);
 	float x = 0;
 	float y = 100;
-	for (auto& brick : m_brickObject)
+	for (auto& brick : brickVec)
 	{
-		brick.sprite.setTexture(m_texture);
+		brick.sprite.setTexture(texture);
 		brick.positionX = x;
 		brick.positionY = y;
 		x += 100;

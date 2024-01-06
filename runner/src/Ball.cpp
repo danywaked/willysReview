@@ -17,15 +17,15 @@ Ball::Ball()
 	speed = 200.0f;
 	positionX = 500.0f;
 	positionY = 400.0f;
-	m_direction.x = positionX;
-	m_direction.y = positionY;
+	direction.x = positionX;
+	direction.y = positionY;
 };
 
 void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLeft, int rectTop)
 {
-	m_ballSprite.setTexture(*texture);
-	m_ballSprite.setPosition(positionX, positionY);
-	m_ballSprite.setScale(1.0f, 1.0f);
+	ballSprite.setTexture(*texture);
+	ballSprite.setPosition(positionX, positionY);
+	ballSprite.setScale(1.0f, 1.0f);
 	worldBounds.width = rectWidth;
 	worldBounds.height = rectHeight;
 	worldBounds.left = rectLeft;
@@ -35,25 +35,25 @@ void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLe
 void Ball::BallUpdate(float deltatime)
 {
 	WorldConstraining(positionX, positionY);
-	m_direction = Normalized(m_direction);
-	positionX += m_direction.x * speed * deltatime;
-	positionY += m_direction.y * speed * deltatime;
-	m_ballSprite.setPosition(positionX, positionY);
+	direction = Normalized(direction);
+	positionX += direction.x * speed * deltatime;
+	positionY += direction.y * speed * deltatime;
+	ballSprite.setPosition(positionX, positionY);
 };
 
 void Ball::WorldConstraining(float posX, float posY)
 {
 	if (posX < (float)worldBounds.left)
 	{
-		m_direction.x = -m_direction.x;
+		direction.x = -direction.x;
 	}
 	if (posX >= (float)worldBounds.width - 50)
 	{
-		m_direction.x = -m_direction.x;
+		direction.x = -direction.x;
 	}
 	if (posY < (float)worldBounds.top)
 	{
-		m_direction.y = -m_direction.y;
+		direction.y = -direction.y;
 	}
 }
 
@@ -61,7 +61,7 @@ void Ball::Restart()
 {
 	positionX = 500.0f;
 	positionY = 400.0f;
-	m_direction.x = positionX;
-	m_direction.y = positionY;
+	direction.x = positionX;
+	direction.y = positionY;
 	speed = 200.0f;
 }

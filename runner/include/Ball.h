@@ -15,8 +15,8 @@ public:
 	void WorldConstraining(float posX, float posY);
 	void Restart();
 	sf::IntRect worldBounds;
-	sf::Sprite m_ballSprite;
-	sf::Vector2f m_direction;
+	sf::Sprite ballSprite;
+	sf::Vector2f direction;
 	float speed;
 
 };

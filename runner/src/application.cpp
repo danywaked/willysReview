@@ -110,7 +110,7 @@ namespace runner
           m_highScoreText.setString("HighScore: " + intToString(m_highScoreInt));
       }
       
-      if(m_brick.m_brickObject.empty())
+      if(m_brick.brickVec.empty())
       {
         //win
           m_CurrentGameState = TheGamesStates::win;
@@ -141,12 +141,12 @@ namespace runner
             m_window.draw(m_parallaxBackground.m_fallingStarRed[i].sprite);
         }
         m_window.draw(m_ScoreText);
-        m_window.draw(m_player.m_playerSprite);
-        m_window.draw(m_ball.m_ballSprite);
+        m_window.draw(m_player.playerSprite);
+        m_window.draw(m_ball.ballSprite);
 
-        for(int i = 0; i < m_brick.m_brickObject.size(); i++)
+        for(int i = 0; i < m_brick.brickVec.size(); i++)
         {
-           m_window.draw(m_brick.m_brickObject[i].sprite);
+           m_window.draw(m_brick.brickVec[i].sprite);
         }
         
       }
@@ -246,24 +246,24 @@ namespace runner
 
    void Application::CollisionCheck()
    {
-       float r1RightEdge = m_player.m_playerSprite.getPosition().y + m_player.m_playerSprite.getTexture()->getSize().y;
-       if (r1RightEdge >= m_ball.m_ballSprite.getPosition().y)
+       float r1RightEdge = m_player.playerSprite.getPosition().y + m_player.playerSprite.getTexture()->getSize().y;
+       if (r1RightEdge >= m_ball.ballSprite.getPosition().y)
        {
            std::cout << " right side someting" << std::endl;
        };
-       if (AxisAlignedBoundingBox(m_player.m_playerSprite, m_ball.m_ballSprite))
+       if (AxisAlignedBoundingBox(m_player.playerSprite, m_ball.ballSprite))
        {           
-           m_ball.m_direction.y = -m_ball.m_direction.y;
+           m_ball.direction.y = -m_ball.direction.y;
            //std::cout << "hitted a player" << std::endl;
        }
 
-       for (int i = 0; i < m_brick.m_brickObject.size(); i++)
+       for (int i = 0; i < m_brick.brickVec.size(); i++)
        {
-           if (AxisAlignedBoundingBox(m_brick.m_brickObject[i].sprite, m_ball.m_ballSprite))
+           if (AxisAlignedBoundingBox(m_brick.brickVec[i].sprite, m_ball.ballSprite))
            {
-               m_ball.m_direction.y = -m_ball.m_direction.y;
+               m_ball.direction.y = -m_ball.direction.y;
                m_ball.speed += 10.0f;
-               m_brick.m_brickObject.erase(m_brick.m_brickObject.begin() + i);
+               m_brick.brickVec.erase(m_brick.brickVec.begin() + i);
                m_currentScore++;
                //std::cout << "hitted a brick" << std::endl;
            }
@@ -283,7 +283,7 @@ namespace runner
            }
        }
        // If the player is out of bounds or edge of the bottom screen that should give trigger fail condition.
-       if(m_ball.m_ballSprite.getPosition().y >= m_window.getSize().y)
+       if(m_ball.ballSprite.getPosition().y >= m_window.getSize().y)
        {
            m_CurrentGameState = TheGamesStates::lose;
            //std::cout << "lose" << std::endl;
