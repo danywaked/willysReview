@@ -8,7 +8,6 @@ void Brick::SetUp(sf::Texture* texture)
 	float y = 100;
 	for (int i = 0; i < m_brickObject.size(); i++)
 	{
-		
 		m_brickObject[i].sprite.setTexture(m_texture);
 		m_brickObject[i].color = sf::Color::Red;
 		m_brickObject[i].positionX = x;

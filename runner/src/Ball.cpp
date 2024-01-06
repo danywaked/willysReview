@@ -10,11 +10,6 @@ Ball::Ball()
 	m_direction.y = positionY;
 };
 
-Ball::~Ball()
-{
-
-};
-
 void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLeft, int rectTop)
 {
 	m_ballSprite.setTexture(*texture);
@@ -61,11 +56,6 @@ void Ball::WorldConstraining(float posX, float posY)
 	{
 		m_direction.y = -m_direction.y;
 	}
-	/*if (posY >= (float)worldBounds.height -50)
-	{
-		m_direction.y = -m_direction.y;
-	}*/
-
 }
 
 void Ball::Restart()

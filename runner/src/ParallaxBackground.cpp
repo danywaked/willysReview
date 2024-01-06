@@ -1,14 +1,5 @@
 #include "ParallaxBackground.h"
 
-parallaxBackground::parallaxBackground()
-{
-}
-
-parallaxBackground::~parallaxBackground()
-{
-
-}
-
 void parallaxBackground::SetUp(sf::Texture* texture)
 {
 	m_texture = *texture;
