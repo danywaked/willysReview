@@ -3,6 +3,8 @@
 
 class Ball 
 {
+	float positionX;
+	float positionY;
 public:
 	Ball();
 	void SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLeft, int rectTop);
@@ -16,6 +18,5 @@ public:
 	sf::Vector2f m_direction;
 	bool hasCollided;
 	float m_speed;
-private:
-	float positionX, positionY;
+
 };
