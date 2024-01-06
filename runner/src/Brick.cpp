@@ -3,19 +3,7 @@
 void Brick::SetUp(sf::Texture* texture)
 {
 	m_texture = *texture;
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
+	m_brickObject.resize(13);
 	float x = 0;
 	float y = 100;
 	for (int i = 0; i < m_brickObject.size(); i++)
@@ -35,19 +23,7 @@ void Brick::Restart()
 {
 	m_brickObject.clear();
 
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
-	m_brickObject.push_back({});
+	m_brickObject.resize(13);
 	float x = 0;
 	float y = 100;
 	for (int i = 0; i < m_brickObject.size(); i++)
