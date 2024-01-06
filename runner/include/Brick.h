@@ -6,7 +6,8 @@ struct BrickParts
 {
 	sf::Sprite sprite;
 	sf::Color color;
-	float positionX, positionY;
+	float positionX;
+	float positionY;
 };
 
 class Brick
@@ -17,4 +18,5 @@ public:
 	std::vector<BrickParts> m_brickObject;
 private:
 	sf::Texture m_texture;
+
 };
