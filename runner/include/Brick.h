@@ -5,8 +5,8 @@
 struct BrickParts
 {
 	sf::Sprite sprite;
-	float positionX;
-	float positionY;
+	float positionX = 0.0f;
+	float positionY = 100.0f;
 };
 
 class Brick

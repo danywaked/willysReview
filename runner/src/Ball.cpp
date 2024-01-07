@@ -12,15 +12,6 @@ sf::Vector2f Normalized(const sf::Vector2f& rhs) {
 	return sf::Vector2f{ x, y };
 }
 
-Ball::Ball()
-{
-	speed = 200.0f;
-	positionX = 500.0f;
-	positionY = 400.0f;
-	direction.x = positionX;
-	direction.y = positionY;
-};
-
 void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLeft, int rectTop)
 {
 	ballSprite.setTexture(*texture);
