@@ -1,19 +1,16 @@
 #include "Brick.h"
 
-void Brick::SetUp(sf::Texture* texture)
-{
+void Brick::SetUp(sf::Texture* texture){
 	brickTexture = *texture;
 	Initialize();
 }
 	
-void Brick::Restart()
-{
+void Brick::Restart(){
 	brickVec.clear();
 	Initialize();
 }
 
-void Brick::Initialize()
-{
+void Brick::Initialize(){
 	brickVec.resize(13);
 	float x = 0;
 	float y = 100;

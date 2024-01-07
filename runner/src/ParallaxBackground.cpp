@@ -1,15 +1,9 @@
 #include "ParallaxBackground.h"
 
-void parallaxBackground::SetUp(sf::Texture* texture)
-{
+void parallaxBackground::SetUp(sf::Texture* texture){
 	m_texture = *texture;
-	m_fallingStarYellow.push_back({});
-	m_fallingStarYellow.push_back({});
-	m_fallingStarYellow.push_back({});
-	m_fallingStarYellow.push_back({});
-	m_fallingStarRed.push_back({});
-	m_fallingStarRed.push_back({});
-	m_fallingStarRed.push_back({});
+	m_fallingStarYellow.resize(4);
+	m_fallingStarRed.resize(3);
 	float x = 100;
 	float y = -100;
 	for(int i = 0; i < m_fallingStarYellow.size(); i++)
@@ -38,8 +32,7 @@ void parallaxBackground::SetUp(sf::Texture* texture)
 	}
 }
 
-void parallaxBackground::Update(float deltatime)
-{
+void parallaxBackground::Update(float deltatime){
 	float fallingSpeed = 125;
 	for (int i = 0; i < m_fallingStarYellow.size(); i++)
 	{

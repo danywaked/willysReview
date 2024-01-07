@@ -1,7 +1,6 @@
 #include "PlayerCharacter.h"
 
-void PlayerCharacter::SetUp(sf::Texture* texture, float min, float max)
-{
+void PlayerCharacter::SetUp(sf::Texture* texture, float min, float max){
 	//Thinking is easier to read if I set variables in a SetUp class
 	minPositionX = min;
 	maxPositionX = max;
@@ -11,15 +10,13 @@ void PlayerCharacter::SetUp(sf::Texture* texture, float min, float max)
 	playerSprite.setScale(1.0f, 0.5f);
 };
 
-void PlayerCharacter::PlayerUpdate(float deltatime)
-{
+void PlayerCharacter::PlayerUpdate(float deltatime){
 	ProcessingInput(deltatime);
 	playerSprite.setPosition(positionX, positionY);
 	WorldConstrainingOnPositionX();
 };
 
-void PlayerCharacter::ProcessingInput(float deltatime)
-{
+void PlayerCharacter::ProcessingInput(float deltatime){
 	if(pressedLeft)
 	{
 		positionX += -speed * deltatime;
@@ -30,8 +27,7 @@ void PlayerCharacter::ProcessingInput(float deltatime)
 	}
 };
 
-void PlayerCharacter::WorldConstrainingOnPositionX() 
-{
+void PlayerCharacter::WorldConstrainingOnPositionX(){
 	if(positionX < minPositionX)
 	{
 		positionX = 0.0f;
@@ -42,7 +38,6 @@ void PlayerCharacter::WorldConstrainingOnPositionX()
 	}
 };
 
-void PlayerCharacter::Restart()
-{
+void PlayerCharacter::Restart(){
 	positionX = 500.0f;
 }

@@ -1,7 +1,6 @@
 #include "Ball.h"
 
-float Length(const sf::Vector2f& rhs)
-{
+float Length(const sf::Vector2f& rhs){
 	return std::sqrtf(rhs.x * rhs.x + rhs.y * rhs.y);
 };
 
@@ -12,8 +11,7 @@ sf::Vector2f Normalized(const sf::Vector2f& rhs) {
 	return sf::Vector2f{ x, y };
 }
 
-void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLeft, int rectTop)
-{
+void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLeft, int rectTop){
 	ballSprite.setTexture(*texture);
 	ballSprite.setPosition(positionX, positionY);
 	ballSprite.setScale(1.0f, 1.0f);
@@ -23,8 +21,7 @@ void Ball::SetUp(sf::Texture* texture, int rectWidth, int rectHeight, int rectLe
 	worldBounds.top = rectTop;
 };
 
-void Ball::BallUpdate(float deltatime)
-{
+void Ball::BallUpdate(float deltatime){
 	WorldConstraining(positionX, positionY);
 	direction = Normalized(direction);
 	positionX += direction.x * speed * deltatime;
@@ -32,8 +29,7 @@ void Ball::BallUpdate(float deltatime)
 	ballSprite.setPosition(positionX, positionY);
 };
 
-void Ball::WorldConstraining(float posX, float posY)
-{
+void Ball::WorldConstraining(float posX, float posY){
 	if (posX < (float)worldBounds.left)
 	{
 		direction.x = -direction.x;
@@ -48,8 +44,7 @@ void Ball::WorldConstraining(float posX, float posY)
 	}
 }
 
-void Ball::Restart()
-{
+void Ball::Restart(){
 	positionX = 500.0f;
 	positionY = 400.0f;
 	direction.x = positionX;
