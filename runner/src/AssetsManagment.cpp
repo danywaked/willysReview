@@ -1,30 +1,7 @@
 #include "AssetsManagment.h"
-
-// Most of the method and logic from another project
-
-AssetsManagement::AssetsManagement()
-{
-   
-};
-
-AssetsManagement::~AssetsManagement()
-{
-    // Delete all of the textures we used
-    sf::Texture* texture;
-    std::unordered_map<std::string, sf::Texture*>::iterator iter = m_textures.begin();
-    while (iter != m_textures.end())
-    {
-        texture = iter->second;
-        delete texture;
-        iter++;
-    }
-};
-
-std::unordered_map< std::string, sf::Texture* > AssetsManagement::m_textures;
 std::vector<std::string> AssetsManagement::m_order;
-std::unordered_map < std::string, sf::Text*> m_text;
-bool AssetsManagement::LoadFontFile(const std::string& filePath)
-{
+std::unordered_map<std::string, std::shared_ptr<sf::Texture>> AssetsManagement::m_textures;
+bool AssetsManagement::LoadFontFile(const std::string& filePath){
     if(!m_font.loadFromFile(filePath))
     {
         printf("Font failed to load from file path");
@@ -33,8 +10,7 @@ bool AssetsManagement::LoadFontFile(const std::string& filePath)
     return true;
 }
 
-sf::Text AssetsManagement::SetText(std::string textSentence, int size, sf::Uint32 textStyle, float positionX, float positionY)
-{
+sf::Text AssetsManagement::SetText(std::string textSentence, int size, sf::Uint32 textStyle, float positionX, float positionY) const{
     sf::Text text;
     //Have m_font as defualt font.
     text.setFont(m_font);
@@ -45,42 +21,46 @@ sf::Text AssetsManagement::SetText(std::string textSentence, int size, sf::Uint3
     return text;
 }
 
-int AssetsManagement::GetLength()
-{
+int AssetsManagement::GetLength(){
     int size = static_cast<int>(m_textures.size());
 	return size;
 }
 
-// Get Texture by Name
-sf::Texture* AssetsManagement::GetByName(std::string name)
-{
-    if (m_textures.find(name) != m_textures.end()) {
-        return m_textures[name];
+std::shared_ptr<sf::Texture> AssetsManagement::GetByName(std::string name){
+    auto it = m_textures.find(name);
+    if (it != m_textures.end()) {
+        return it->second;
     }
-    return NULL;
+    return nullptr;
 }
 
-// Get Texture by Index
-sf::Texture* AssetsManagement::GetByIndex(int index)
-{
+std::shared_ptr<sf::Texture> AssetsManagement::GetByIndex(int index){
     // Stay DRY and reuse get by name, but get string name from vector with index
     return GetByName(m_order.at(index));
 }
 
-// Assign a Texture a Name (for accessing via get) and path (to load from)
-sf::Texture* AssetsManagement::LoadTexture(std::string name, std::string path)
-{
-    // Haven't loaded it yet, time to create it
-    sf::Texture* texture = new sf::Texture();
-
-    if (texture->loadFromFile(path))
-    {
-        m_textures[name] = texture;
-
-        // Push to vector the order in which items were loaded into map, for accessing via index.
-        m_order.push_back(name);
-        return m_textures[name];
+//sf::Texture* AssetsManagement::LoadTexture(std::string name, std::string path)
+//{
+//    // Haven't loaded it yet, time to create it
+//    sf::Texture* texture = new sf::Texture();
+//    if (!texture->loadFromFile(path))
+//    {
+//        return nullptr;
+//    }
+//    m_textures[name] = texture;
+//    // Push to vector the order in which items were loaded into map, for accessing via index.
+//    m_order.push_back(name);
+//    return m_textures[name];
+//} 
+//Assign a Texture a Name (for accessing via get) and path (to load from)
+std::shared_ptr<sf::Texture>  AssetsManagement::LoadTexture(const std::string& name, const std::string& path) {
+    auto texture = std::make_shared<sf::Texture>();
+    if (texture->loadFromFile(path)) {
+        auto insertionResult = m_textures.emplace(name, texture);
+        if (insertionResult.second) {
+            m_order.push_back(name);
+            return insertionResult.first->second;
+        }
     }
-    delete texture;
-    return NULL;
+    return nullptr;
 }

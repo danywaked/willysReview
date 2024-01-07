@@ -4,10 +4,10 @@
 #include <iostream>
 namespace runner
 {
-    static const char* kPlayerID    = "player";
-    static const char* kBallID      = "ball";
-    static const char* kBrickID     = "brick";
-    static const char* kFallingStarID = "fallingStar";
+    std::string kPlayerID    = "player";
+    std::string kBallID      = "ball";
+    std::string kBrickID     = "brick";
+    std::string kFallingStarID = "fallingStar";
 
    void Application::run()
    {
@@ -234,8 +234,6 @@ namespace runner
    
    }
 
-   
-
    void Application::Restart()
    {
        m_currentScore = 0;
@@ -290,8 +288,7 @@ namespace runner
        }
    }
 
-   void Application::loadHighScore()
-   {
+   void Application::loadHighScore(){
               std::ifstream readFile;
        readFile.open("assets/HighScore.txt");
        if (readFile.is_open())
@@ -305,8 +302,7 @@ namespace runner
        readFile.close();
    };
 
-   void Application::StoreHighScore()
-   {
+   void Application::StoreHighScore(){
 
        std::ofstream writeFile("assets/HighScore.txt");
        if (writeFile.is_open())

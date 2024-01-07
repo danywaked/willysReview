@@ -10,7 +10,7 @@ class PlayerCharacter
 	float minPositionX = 0.0f;
 	float maxPositionX = 0.0f;
 public:
-	void SetUp(sf::Texture * texture, float min, float max);
+	void SetUp(std::shared_ptr<sf::Texture> texture, float min, float max);
 	void PlayerUpdate(float deltatime);
 	void ProcessingInput(float deltatime);
 	void WorldConstrainingOnPositionX();

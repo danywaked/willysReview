@@ -1,6 +1,6 @@
 #include "ParallaxBackground.h"
 
-void parallaxBackground::SetUp(sf::Texture* texture){
+void parallaxBackground::SetUp(std::shared_ptr<sf::Texture> texture){
 	m_texture = *texture;
 	m_fallingStarYellow.resize(4);
 	m_fallingStarRed.resize(3);

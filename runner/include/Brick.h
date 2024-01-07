@@ -13,7 +13,7 @@ class Brick
 {
 	sf::Texture brickTexture;
 public:
-	void SetUp(sf::Texture* texture);
+	void SetUp(std::shared_ptr<sf::Texture> texture);
 	void Restart();
 	void Initialize();
 	std::vector<BrickParts> brickVec;

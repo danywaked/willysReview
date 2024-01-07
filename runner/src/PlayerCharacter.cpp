@@ -1,6 +1,6 @@
 #include "PlayerCharacter.h"
 
-void PlayerCharacter::SetUp(sf::Texture* texture, float min, float max){
+void PlayerCharacter::SetUp(std::shared_ptr<sf::Texture> texture, float min, float max){
 	//Thinking is easier to read if I set variables in a SetUp class
 	minPositionX = min;
 	maxPositionX = max;
