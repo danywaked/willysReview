@@ -8,8 +8,10 @@ class Ball
 {
 	float positionX = 500.0f;
 	float positionY = 400.0f;
+	sf::Texture texture;
 public:
-	void SetUp(std::shared_ptr<sf::Texture> texture, int rectWidth, int rectHeight, int rectLeft, int rectTop);
+	Ball();
+	void SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop);
 	void BallUpdate(float deltatime);
 	void WorldConstraining(float posX, float posY);
 	void Restart();

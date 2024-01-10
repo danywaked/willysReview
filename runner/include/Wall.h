@@ -9,11 +9,12 @@ struct BrickParts
 	float positionY = 100.0f;
 };
 
-class Brick
+class Wall
 {
 	sf::Texture brickTexture;
 public:
-	void SetUp(std::shared_ptr<sf::Texture> texture);
+	Wall();
+	void SetUp();
 	void Restart();
 	void Initialize();
 	std::vector<BrickParts> brickVec;

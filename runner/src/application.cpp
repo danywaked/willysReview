@@ -49,11 +49,15 @@ namespace runner
 	{
 		m_CurrentGameState = GameState::pregame;
 
-		m_AssetsManagement.LoadTexture(kPlayerID, "assets/player.png");
-		m_AssetsManagement.LoadTexture(kBallID, "assets/Ball.png");
-		m_AssetsManagement.LoadTexture(kBrickID, "assets/WhiteHitBrick.png");
-		m_AssetsManagement.LoadTexture(kFallingStarID, "assets/FallingStar.png");
+		//m_AssetsManagement.LoadTexture(kPlayerID, "assets/player.png");
+		//m_AssetsManagement.LoadTexture(kBallID, "assets/Ball.png");
+		//m_AssetsManagement.LoadTexture(kBrickID, "assets/WhiteHitBrick.png");
+		//m_AssetsManagement.LoadTexture(kFallingStarID, "assets/FallingStar.png");
 		m_AssetsManagement.LoadFontFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf");
+		if (!m_font.loadFromFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf"))
+		{
+			printf("Font did not load!");
+		}
 
 		// Made simple that function that just set indivual each sf::Text variable for text in the screen
 		m_startMainuText = m_AssetsManagement.SetText("Press `space´ to start", 100, sf::Text::Bold, 250, 250);
@@ -67,10 +71,10 @@ namespace runner
 		m_minOfScreen = 0.0f;
 		loadHighScore();
 
-		m_player.SetUp(m_AssetsManagement.GetByName(kPlayerID), m_minOfScreen, (float)m_window.getSize().x);
-		m_ball.SetUp(m_AssetsManagement.GetByName(kBallID), m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
-		m_brick.SetUp(m_AssetsManagement.GetByName(kBrickID));
-		m_background.SetUp(m_AssetsManagement.GetByName(kFallingStarID));
+		m_player.SetUp(m_minOfScreen, (float)m_window.getSize().x);
+		m_ball.SetUp(m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
+		m_wall.SetUp();
+		m_background.SetUp();
 	}
 
 	bool Application::update()
@@ -89,7 +93,7 @@ namespace runner
 			m_highScoreText.setString("HighScore: " + std::to_string(m_highScore));
 		}
 
-		if (m_brick.brickVec.empty())
+		if (m_wall.brickVec.empty())
 		{
 			m_CurrentGameState = GameState::win;
 		}
@@ -120,9 +124,9 @@ namespace runner
 			m_window.draw(m_player.playerSprite);
 			m_window.draw(m_ball.ballSprite);
 
-			for (int i = 0; i < m_brick.brickVec.size(); i++)
+			for (int i = 0; i < m_wall.brickVec.size(); i++)
 			{
-				m_window.draw(m_brick.brickVec[i].sprite);
+				m_window.draw(m_wall.brickVec[i].sprite);
 			}
 		}
 
@@ -193,7 +197,7 @@ namespace runner
 		m_currentScore = 0;
 		m_ball.Restart();
 		m_player.Restart();
-		m_brick.Restart();
+		m_wall.Restart();
 		loadHighScore();
 	}
 
@@ -210,13 +214,13 @@ namespace runner
 			//std::cout << "hitted a player" << std::endl;
 		}
 
-		for (int i = 0; i < m_brick.brickVec.size(); i++)
+		for (int i = 0; i < m_wall.brickVec.size(); i++)
 		{
-			if (AxisAlignedBoundingBox(m_brick.brickVec[i].sprite, m_ball.ballSprite))
+			if (AxisAlignedBoundingBox(m_wall.brickVec[i].sprite, m_ball.ballSprite))
 			{
 				m_ball.direction.y = -m_ball.direction.y;
 				m_ball.speed += 10.0f;
-				m_brick.brickVec.erase(m_brick.brickVec.begin() + i);
+				m_wall.brickVec.erase(m_wall.brickVec.begin() + i);
 				m_currentScore++;
 				//std::cout << "hitted a brick" << std::endl;
 			}

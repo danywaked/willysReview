@@ -1,19 +1,22 @@
-#include "Brick.h"
+#include "Wall.h"
 
-void Brick::SetUp(std::shared_ptr<sf::Texture> texture){
-	if (!texture) {
+Wall::Wall()
+{
+	if (!brickTexture.loadFromFile("assets/WhiteHitBrick.png")) {
 		return;
 	}
-	brickTexture = *texture;
+}
+
+void Wall::SetUp(){
 	Initialize();
 }
 	
-void Brick::Restart(){
+void Wall::Restart(){
 	brickVec.clear();
 	Initialize();
 }
 
-void Brick::Initialize(){
+void Wall::Initialize(){
 	brickVec.resize(13);
 	float x = 0;
 	float y = 100;

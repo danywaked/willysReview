@@ -108,7 +108,7 @@
     <ClCompile Include="src\AssetsManagment.cpp" />
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\batch.cpp" />
-    <ClCompile Include="src\Brick.cpp" />
+    <ClCompile Include="src\Wall.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ParallaxBackground.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
@@ -118,7 +118,7 @@
     <ClInclude Include="include\AssetsManagment.h" />
     <ClInclude Include="include\Ball.h" />
     <ClInclude Include="include\batch.hpp" />
-    <ClInclude Include="include\Brick.h" />
+    <ClInclude Include="include\Wall.h" />
     <ClInclude Include="include\ParallaxBackground.h" />
     <ClInclude Include="include\PlayerCharacter.h" />
   </ItemGroup>

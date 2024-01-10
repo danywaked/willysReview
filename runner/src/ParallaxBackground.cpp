@@ -1,17 +1,21 @@
 #include "ParallaxBackground.h"
 
-void Background::SetUp(std::shared_ptr<sf::Texture> texture){
-	if (!texture) {
+Background::Background()
+{
+	if (!bgTexture.loadFromFile("assets/FallingStar.png")) {
 		return;
 	}
-	m_texture = *texture;
+}
+
+void Background::SetUp(){
+
 	m_fallingStarYellow.resize(4);
 	m_fallingStarRed.resize(3);
 	float x = 100;
 	float y = -100;
 	for(int i = 0; i < m_fallingStarYellow.size(); i++)
 	{
-		m_fallingStarYellow[i].sprite.setTexture(m_texture);
+		m_fallingStarYellow[i].sprite.setTexture(bgTexture);
 		m_fallingStarYellow[i].color = sf::Color::Yellow;
 		m_fallingStarYellow[i].positionX = x;
 		m_fallingStarYellow[i].positionY = y;

@@ -1,25 +1,30 @@
 #include "PlayerCharacter.h"
 
-void PlayerCharacter::SetUp(std::shared_ptr<sf::Texture> texture, float min, float max){
+Player::Player()
+{
+	if (!playerTexture.loadFromFile("assets/player.png")) {
+		return;
+	}
+}
+
+void Player::SetUp(float min, float max) {
 	//Thinking is easier to read if I set variables in a SetUp class
 	minPositionX = min;
 	maxPositionX = max;
 	positionX = 500.0f;
-	if (!texture) {
-		return;
-	}
-	playerSprite.setTexture(*texture);
+
+	playerSprite.setTexture(playerTexture);
 	playerSprite.setPosition(positionX, positionY);
 	playerSprite.setScale(1.0f, 0.5f);
 };
 
-void PlayerCharacter::PlayerUpdate(float deltatime){
+void Player::PlayerUpdate(float deltatime){
 	ProcessingInput(deltatime);
 	playerSprite.setPosition(positionX, positionY);
 	WorldConstrainingOnPositionX();
 };
 
-void PlayerCharacter::ProcessingInput(float deltatime){
+void Player::ProcessingInput(float deltatime){
 	if(pressedLeft)
 	{
 		positionX += -speed * deltatime;
@@ -30,7 +35,7 @@ void PlayerCharacter::ProcessingInput(float deltatime){
 	}
 };
 
-void PlayerCharacter::WorldConstrainingOnPositionX(){
+void Player::WorldConstrainingOnPositionX(){
 	if(positionX < minPositionX)
 	{
 		positionX = 0.0f;
@@ -41,6 +46,6 @@ void PlayerCharacter::WorldConstrainingOnPositionX(){
 	}
 };
 
-void PlayerCharacter::Restart(){
+void Player::Restart(){
 	positionX = 500.0f;
 }

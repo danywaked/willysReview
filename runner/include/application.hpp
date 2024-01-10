@@ -7,7 +7,7 @@
 #include "batch.hpp"
 #include "PlayerCharacter.h"
 #include "Ball.h"
-#include "Brick.h"
+#include "Wall.h"
 #include "AssetsManagment.h"
 #include "ParallaxBackground.h"
 
@@ -36,12 +36,14 @@ namespace runner
       sf::Clock        m_clock;
       sf::Time         m_deltatime;
 
-      PlayerCharacter  m_player;
+      Player  m_player;
       Ball             m_ball;
-      Brick            m_brick;
+      Wall             m_wall;
       Background       m_background;
       AssetsManagement m_AssetsManagement;
       GameState   m_CurrentGameState;
+
+      sf::Font m_font;
 
       sf::Text m_startMainuText;
       sf::Text m_winText; 
