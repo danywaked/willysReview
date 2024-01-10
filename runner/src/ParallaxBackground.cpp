@@ -1,6 +1,9 @@
 #include "ParallaxBackground.h"
 
 void parallaxBackground::SetUp(std::shared_ptr<sf::Texture> texture){
+	if (!texture) {
+		return;
+	}
 	m_texture = *texture;
 	m_fallingStarYellow.resize(4);
 	m_fallingStarRed.resize(3);
@@ -15,7 +18,7 @@ void parallaxBackground::SetUp(std::shared_ptr<sf::Texture> texture){
 		x += 350;
 		m_fallingStarYellow[i].sprite.setPosition(m_fallingStarYellow[i].positionX, m_fallingStarYellow[i].positionY);
 		m_fallingStarYellow[i].sprite.setScale(0.5f, 0.5f);
-		m_fallingStarYellow[i].sprite.setColor(m_fallingStarYellow[i].color);
+		m_fallingStarYellow[i].sprite.setColor(m_fallingStarYellow[i].color); //TODO: why hold
 	}
 	y = -300;
 	x = 250;

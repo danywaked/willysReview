@@ -12,6 +12,9 @@ sf::Vector2f Normalized(const sf::Vector2f& rhs) {
 }
 
 void Ball::SetUp(std::shared_ptr<sf::Texture> texture, int rectWidth, int rectHeight, int rectLeft, int rectTop){
+	if (!texture) {
+		return;
+	}		 
 	ballSprite.setTexture(*texture);
 	ballSprite.setPosition(positionX, positionY);
 	ballSprite.setScale(1.0f, 1.0f);

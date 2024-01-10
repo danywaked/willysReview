@@ -48,12 +48,14 @@
     <IntDir>..\build\$(ProjectName)\$(Configuration.toLower())\</IntDir>
     <TargetName>$(ProjectName).$(Configuration.toLower())</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\build\</OutDir>
     <IntDir>..\build\$(ProjectName)\$(Configuration.toLower())\</IntDir>
     <TargetName>$(ProjectName).$(Configuration.toLower())</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

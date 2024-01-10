@@ -1,6 +1,9 @@
 #include "Brick.h"
 
 void Brick::SetUp(std::shared_ptr<sf::Texture> texture){
+	if (!texture) {
+		return;
+	}
 	brickTexture = *texture;
 	Initialize();
 }

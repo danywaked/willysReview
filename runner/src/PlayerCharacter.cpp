@@ -5,6 +5,9 @@ void PlayerCharacter::SetUp(std::shared_ptr<sf::Texture> texture, float min, flo
 	minPositionX = min;
 	maxPositionX = max;
 	positionX = 500.0f;
+	if (!texture) {
+		return;
+	}
 	playerSprite.setTexture(*texture);
 	playerSprite.setPosition(positionX, positionY);
 	playerSprite.setScale(1.0f, 0.5f);
