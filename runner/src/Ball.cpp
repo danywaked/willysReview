@@ -17,18 +17,21 @@ Ball::Ball()
 	{
 		return;
 	}
-}
-
-void Ball::SetUp( int rectWidth, int rectHeight, int rectLeft, int rectTop){
-
 	ballSprite.setTexture(texture);
 	ballSprite.setPosition(positionX, positionY);
 	ballSprite.setScale(1.0f, 1.0f);
+	
+}
+
+
+
+void Ball::SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop)
+{
 	worldBounds.width = rectWidth;
 	worldBounds.height = rectHeight;
 	worldBounds.left = rectLeft;
 	worldBounds.top = rectTop;
-};
+}
 
 void Ball::BallUpdate(float deltatime){
 	WorldConstraining(positionX, positionY);
