@@ -41,14 +41,13 @@ namespace runner
 			if (!update()) {
 				m_window.close();
 			}
-
 			render();
 		}
 	}
 
 	void Application::SetUp()
 	{
-		m_CurrentGameState = TheGamesStates::pregame;
+		m_CurrentGameState = GameState::pregame;
 
 		m_AssetsManagement.LoadTexture(kPlayerID, "assets/player.png");
 		m_AssetsManagement.LoadTexture(kBallID, "assets/Ball.png");
@@ -58,70 +57,66 @@ namespace runner
 
 		// Made simple that function that just set indivual each sf::Text variable for text in the screen
 		m_startMainuText = m_AssetsManagement.SetText("Press `space´ to start", 100, sf::Text::Bold, 250, 250);
-		m_WinText = m_AssetsManagement.SetText("Winner", 50, sf::Text::Bold, 550, 300);
-		m_LoseText = m_AssetsManagement.SetText("Game Over", 50, sf::Text::Bold, 550, 300);
-		m_ScoreText = m_AssetsManagement.SetText("Score", 50, sf::Text::Bold, 1100, 5);
+		m_winText = m_AssetsManagement.SetText("Winner", 50, sf::Text::Bold, 550, 300);
+		m_loseText = m_AssetsManagement.SetText("Game Over", 50, sf::Text::Bold, 550, 300);
+		m_scoreText = m_AssetsManagement.SetText("Score", 50, sf::Text::Bold, 1100, 5);
 		m_highScoreText = m_AssetsManagement.SetText("", 50, sf::Text::Bold, 0, 5);
 
-
 		m_currentScore = 0;
-		m_highScoreInt = 0;
+		m_highScore = 0;
 		m_minOfScreen = 0.0f;
 		loadHighScore();
 
 		m_player.SetUp(m_AssetsManagement.GetByName(kPlayerID), m_minOfScreen, (float)m_window.getSize().x);
 		m_ball.SetUp(m_AssetsManagement.GetByName(kBallID), m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
 		m_brick.SetUp(m_AssetsManagement.GetByName(kBrickID));
-		m_parallaxBackground.SetUp(m_AssetsManagement.GetByName(kFallingStarID));
+		m_background.SetUp(m_AssetsManagement.GetByName(kFallingStarID));
 	}
 
 	bool Application::update()
 	{
 		m_deltatime = m_clock.restart();
-		if (m_CurrentGameState == TheGamesStates::running)
+		if (m_CurrentGameState == GameState::running)
 		{
-			m_parallaxBackground.Update(m_deltatime.asSeconds());
-			m_ScoreText.setString("Score: " + std::to_string(m_currentScore));
+			m_background.Update(m_deltatime.asSeconds());
+			m_scoreText.setString("Score: " + std::to_string(m_currentScore));
 			m_player.PlayerUpdate(m_deltatime.asSeconds());
 			m_ball.BallUpdate(m_deltatime.asSeconds());
 			CollisionCheck();
 		}
 		else
 		{
-			m_highScoreText.setString("HighScore: " + std::to_string(m_highScoreInt));
+			m_highScoreText.setString("HighScore: " + std::to_string(m_highScore));
 		}
 
 		if (m_brick.brickVec.empty())
 		{
-			//win
-			m_CurrentGameState = TheGamesStates::win;
+			m_CurrentGameState = GameState::win;
 		}
-
 		return m_running;
 	}
 
 	void Application::render()
 	{
 		m_batch.clear();
-		{}
 		m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });
 
-		if (m_CurrentGameState == TheGamesStates::pregame)
+		if (m_CurrentGameState == GameState::pregame)
 		{
 			m_window.draw(m_startMainuText);
 		}
 
-		if (m_CurrentGameState == TheGamesStates::running)
+		if (m_CurrentGameState == GameState::running)
 		{
-			for (int i = 0; i < m_parallaxBackground.m_fallingStarYellow.size(); i++)
+			for (int i = 0; i < m_background.m_fallingStarYellow.size(); i++)
 			{
-				m_window.draw(m_parallaxBackground.m_fallingStarYellow[i].sprite);
+				m_window.draw(m_background.m_fallingStarYellow[i].sprite);
 			}
-			for (int i = 0; i < m_parallaxBackground.m_fallingStarRed.size(); i++)
+			for (int i = 0; i < m_background.m_fallingStarRed.size(); i++)
 			{
-				m_window.draw(m_parallaxBackground.m_fallingStarRed[i].sprite);
+				m_window.draw(m_background.m_fallingStarRed[i].sprite);
 			}
-			m_window.draw(m_ScoreText);
+			m_window.draw(m_scoreText);
 			m_window.draw(m_player.playerSprite);
 			m_window.draw(m_ball.ballSprite);
 
@@ -129,18 +124,17 @@ namespace runner
 			{
 				m_window.draw(m_brick.brickVec[i].sprite);
 			}
-
 		}
 
-		if (m_CurrentGameState == TheGamesStates::lose)
+		if (m_CurrentGameState == GameState::lose)
 		{
-			m_window.draw(m_LoseText);
+			m_window.draw(m_loseText);
 			StoreHighScore();
 		}
 
-		if (m_CurrentGameState == TheGamesStates::win)
+		if (m_CurrentGameState == GameState::win)
 		{
-			m_window.draw(m_WinText);
+			m_window.draw(m_winText);
 			StoreHighScore();
 		}
 
@@ -166,17 +160,17 @@ namespace runner
 			m_player.pressedRight = false;
 		}
 
-		if (m_CurrentGameState == TheGamesStates::pregame)
+		if (m_CurrentGameState == GameState::pregame)
 		{
 			if (key == sf::Keyboard::Key::Space) {
-				m_CurrentGameState = TheGamesStates::running;
+				m_CurrentGameState = GameState::running;
 			}
 		}
 
-		if (m_CurrentGameState == TheGamesStates::lose || m_CurrentGameState == TheGamesStates::win)
+		if (m_CurrentGameState == GameState::lose || m_CurrentGameState == GameState::win)
 		{
 			if (key == sf::Keyboard::Key::Space) {
-				m_CurrentGameState = TheGamesStates::running;
+				m_CurrentGameState = GameState::running;
 				Restart();
 			}
 		}
@@ -200,6 +194,7 @@ namespace runner
 		m_ball.Restart();
 		m_player.Restart();
 		m_brick.Restart();
+		loadHighScore();
 	}
 
 	void Application::CollisionCheck()
@@ -226,24 +221,24 @@ namespace runner
 				//std::cout << "hitted a brick" << std::endl;
 			}
 		}
-		for (int i = 0; i < m_parallaxBackground.m_fallingStarYellow.size(); i++)
+		for (int i = 0; i < m_background.m_fallingStarYellow.size(); i++)
 		{
-			if (m_parallaxBackground.m_fallingStarYellow[i].positionY >= m_window.getSize().y)
+			if (m_background.m_fallingStarYellow[i].positionY >= m_window.getSize().y)
 			{
-				m_parallaxBackground.m_fallingStarYellow[i].positionY = -100;
+				m_background.m_fallingStarYellow[i].positionY = -100;
 			}
 		}
-		for (int i = 0; i < m_parallaxBackground.m_fallingStarRed.size(); i++)
+		for (int i = 0; i < m_background.m_fallingStarRed.size(); i++)
 		{
-			if (m_parallaxBackground.m_fallingStarRed[i].positionY >= m_window.getSize().y)
+			if (m_background.m_fallingStarRed[i].positionY >= m_window.getSize().y)
 			{
-				m_parallaxBackground.m_fallingStarRed[i].positionY = -100;
+				m_background.m_fallingStarRed[i].positionY = -100;
 			}
 		}
 		// If the player is out of bounds or edge of the bottom screen that should give trigger fail condition.
 		if (m_ball.ballSprite.getPosition().y >= m_window.getSize().y)
 		{
-			m_CurrentGameState = TheGamesStates::lose;
+			m_CurrentGameState = GameState::lose;
 			//std::cout << "lose" << std::endl;
 		}
 	}
@@ -255,7 +250,7 @@ namespace runner
 		{
 			while (!readFile.eof())
 			{
-				readFile >> m_highScoreInt;
+				readFile >> m_highScore;
 			}
 
 		}
@@ -263,13 +258,13 @@ namespace runner
 	};
 
 	void Application::StoreHighScore() {
-		if (m_currentScore <= m_highScoreInt)
+		if (m_currentScore <= m_highScore)
 		{
 			return;
 		}
 		std::ofstream writeFile("assets/HighScore.txt");
 		if (writeFile.is_open())	{
-			writeFile << m_highScoreInt;
+			writeFile << m_currentScore;
 		}
 		writeFile.close();
 	}

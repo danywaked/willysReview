@@ -1,6 +1,6 @@
 #include "ParallaxBackground.h"
 
-void parallaxBackground::SetUp(std::shared_ptr<sf::Texture> texture){
+void Background::SetUp(std::shared_ptr<sf::Texture> texture){
 	if (!texture) {
 		return;
 	}
@@ -35,7 +35,7 @@ void parallaxBackground::SetUp(std::shared_ptr<sf::Texture> texture){
 	}
 }
 
-void parallaxBackground::Update(float deltatime){
+void Background::Update(float deltatime){
 	float fallingSpeed = 125;
 	for (int i = 0; i < m_fallingStarYellow.size(); i++)
 	{
