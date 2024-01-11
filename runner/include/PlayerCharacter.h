@@ -9,15 +9,15 @@ class Player
 	float positionX = 500.0f;
 	float minPositionX = 0.0f;
 	float maxPositionX = 0.0f;
-	sf::Texture playerTexture;
+	sf::Texture texture;
 public:
 	Player();
-	void SetUp(float min, float max);
-	void PlayerUpdate(float deltatime);
-	void ProcessingInput(float deltatime);
-	void WorldConstrainingOnPositionX();
+	void SetWorldConstraints(float min, float max);
+	void Update(float deltatime);
+	void Input(float deltatime);
+	void WorldConstrain();
 	void Restart();
-	sf::Sprite playerSprite;
+	sf::Sprite sprite;
 	bool pressedLeft = false;
 	bool pressedRight = false;
 };

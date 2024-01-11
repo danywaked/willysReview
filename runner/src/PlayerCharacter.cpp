@@ -2,29 +2,27 @@
 
 Player::Player()
 {
-	if (!playerTexture.loadFromFile("assets/player.png")) {
+	if (!texture.loadFromFile("assets/player.png")) {
 		return;
 	}
+	positionX = 500.0f;
+	sprite.setTexture(texture);
+	sprite.setPosition(positionX, positionY);
+	sprite.setScale(1.0f, 0.5f);
 }
 
-void Player::SetUp(float min, float max) {
-	//Thinking is easier to read if I set variables in a SetUp class
+void Player::SetWorldConstraints(float min, float max) {
 	minPositionX = min;
 	maxPositionX = max;
-	positionX = 500.0f;
-
-	playerSprite.setTexture(playerTexture);
-	playerSprite.setPosition(positionX, positionY);
-	playerSprite.setScale(1.0f, 0.5f);
 };
 
-void Player::PlayerUpdate(float deltatime){
-	ProcessingInput(deltatime);
-	playerSprite.setPosition(positionX, positionY);
-	WorldConstrainingOnPositionX();
+void Player::Update(float deltatime){
+	Input(deltatime);
+	sprite.setPosition(positionX, positionY);
+	WorldConstrain();
 };
 
-void Player::ProcessingInput(float deltatime){
+void Player::Input(float deltatime){
 	if(pressedLeft)
 	{
 		positionX += -speed * deltatime;
@@ -35,7 +33,7 @@ void Player::ProcessingInput(float deltatime){
 	}
 };
 
-void Player::WorldConstrainingOnPositionX(){
+void Player::WorldConstrain(){
 	if(positionX < minPositionX)
 	{
 		positionX = 0.0f;

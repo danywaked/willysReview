@@ -71,7 +71,7 @@ namespace runner
 		m_minOfScreen = 0.0f;
 		loadHighScore();
 
-		m_player.SetUp(m_minOfScreen, (float)m_window.getSize().x);
+		m_player.SetWorldConstraints(m_minOfScreen, (float)m_window.getSize().x);
 		m_ball.SetUp(m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
 		//m_wall.SetUp();
 		m_background.SetUp();
@@ -84,7 +84,7 @@ namespace runner
 		{
 			m_background.Update(m_deltatime.asSeconds());
 			m_scoreText.setString("Score: " + std::to_string(m_currentScore));
-			m_player.PlayerUpdate(m_deltatime.asSeconds());
+			m_player.Update(m_deltatime.asSeconds());
 			m_ball.BallUpdate(m_deltatime.asSeconds());
 			CollisionCheck();
 		}
@@ -121,7 +121,7 @@ namespace runner
 				m_window.draw(m_background.m_fallingStarRed[i].sprite);
 			}
 			m_window.draw(m_scoreText);
-			m_window.draw(m_player.playerSprite);
+			m_window.draw(m_player.sprite);
 			m_window.draw(m_ball.ballSprite);
 
 			for (int i = 0; i < m_wall.brickVec.size(); i++)
@@ -203,12 +203,12 @@ namespace runner
 
 	void Application::CollisionCheck()
 	{
-		float r1RightEdge = m_player.playerSprite.getPosition().y + m_player.playerSprite.getTexture()->getSize().y;
+		float r1RightEdge = m_player.sprite.getPosition().y + m_player.sprite.getTexture()->getSize().y;
 		if (r1RightEdge >= m_ball.ballSprite.getPosition().y)
 		{
 			std::cout << " right side someting" << std::endl;
 		};
-		if (AxisAlignedBoundingBox(m_player.playerSprite, m_ball.ballSprite))
+		if (AxisAlignedBoundingBox(m_player.sprite, m_ball.ballSprite))
 		{
 			m_ball.direction.y = -m_ball.direction.y;
 			//std::cout << "hitted a player" << std::endl;

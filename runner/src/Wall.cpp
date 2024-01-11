@@ -2,18 +2,16 @@
 
 Wall::Wall()
 {
-	if (!brickTexture.loadFromFile("assets/WhiteHitBrick.png")) {
+	if (!texture.loadFromFile("assets/WhiteHitBrick.png")) {
 		return;
 	}
-	float x = 0;
-	float y = 100;
-	b.sprite.setTexture(brickTexture);
+	b.sprite.setTexture(texture);
 	b.sprite.setColor(sf::Color::Red);
 
+	float x = 0;
+	float y = 100;
 	for (int i = 0; i < 13; ++i) {
 		brickVec.push_back(b);
-
-		//brick.sprite.setTexture(brickTexture);
 		brickVec[i].positionX = x;
 		brickVec[i].positionY = y;
 		x += 100;

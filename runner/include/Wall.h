@@ -12,7 +12,7 @@ struct Brick
 class Wall
 {
 	Brick b;
-	sf::Texture brickTexture;
+	sf::Texture texture;
 public:
 	Wall();
 	void Restart();
