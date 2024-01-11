@@ -5,28 +5,33 @@ Wall::Wall()
 	if (!brickTexture.loadFromFile("assets/WhiteHitBrick.png")) {
 		return;
 	}
-}
+	float x = 0;
+	float y = 100;
+	b.sprite.setTexture(brickTexture);
+	b.sprite.setColor(sf::Color::Red);
 
-void Wall::SetUp(){
-	Initialize();
+	for (int i = 0; i < 13; ++i) {
+		brickVec.push_back(b);
+
+		//brick.sprite.setTexture(brickTexture);
+		brickVec[i].positionX = x;
+		brickVec[i].positionY = y;
+		x += 100;
+		brickVec[i].sprite.setPosition(brickVec[i].positionX, brickVec[i].positionY);
+	};
 }
 	
 void Wall::Restart(){
 	brickVec.clear();
-	Initialize();
-}
-
-void Wall::Initialize(){
-	brickVec.resize(13);
 	float x = 0;
 	float y = 100;
-	for (auto& brick : brickVec)
-	{
-		brick.sprite.setTexture(brickTexture);
-		brick.positionX = x;
-		brick.positionY = y;
+	for (int i = 0; i < 13; ++i) {
+		brickVec.push_back(b);
+
+		//brick.sprite.setTexture(brickTexture);
+		brickVec[i].positionX = x;
+		brickVec[i].positionY = y;
 		x += 100;
-		brick.sprite.setPosition(brick.positionX, brick.positionY);
-		brick.sprite.setColor(sf::Color::Red);
+		brickVec[i].sprite.setPosition(brickVec[i].positionX, brickVec[i].positionY);
 	};
 }

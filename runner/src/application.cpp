@@ -73,7 +73,7 @@ namespace runner
 
 		m_player.SetUp(m_minOfScreen, (float)m_window.getSize().x);
 		m_ball.SetUp(m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
-		m_wall.SetUp();
+		//m_wall.SetUp();
 		m_background.SetUp();
 	}
 

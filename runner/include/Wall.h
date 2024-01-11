@@ -2,7 +2,7 @@
 
 #include "batch.hpp"
 #include <vector>
-struct BrickParts
+struct Brick
 {
 	sf::Sprite sprite;
 	float positionX = 0.0f;
@@ -11,11 +11,10 @@ struct BrickParts
 
 class Wall
 {
+	Brick b;
 	sf::Texture brickTexture;
 public:
 	Wall();
-	void SetUp();
 	void Restart();
-	void Initialize();
-	std::vector<BrickParts> brickVec;
+	std::vector<Brick> brickVec;
 };
