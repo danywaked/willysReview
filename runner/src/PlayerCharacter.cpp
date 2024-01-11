@@ -8,7 +8,6 @@ Player::Player()
 	positionX = 500.0f;
 	sprite.setTexture(texture);
 	sprite.setPosition(positionX, positionY);
-	sprite.setScale(1.0f, 0.5f);
 }
 
 void Player::SetWorldConstraints(float min, float max) {

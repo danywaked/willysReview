@@ -11,13 +11,13 @@ class Player
 	float maxPositionX = 0.0f;
 	sf::Texture texture;
 public:
+	sf::Sprite sprite;
 	Player();
 	void SetWorldConstraints(float min, float max);
 	void Update(float deltatime);
 	void Input(float deltatime);
 	void WorldConstrain();
 	void Restart();
-	sf::Sprite sprite;
 	bool pressedLeft = false;
 	bool pressedRight = false;
 };
