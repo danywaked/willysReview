@@ -106,7 +106,6 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\Ball.cpp" />
-    <ClCompile Include="src\batch.cpp" />
     <ClCompile Include="src\Wall.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Background.cpp" />
@@ -115,7 +114,6 @@
   <ItemGroup>
     <ClInclude Include="include\application.hpp" />
     <ClInclude Include="include\Ball.h" />
-    <ClInclude Include="include\batch.hpp" />
     <ClInclude Include="include\Wall.h" />
     <ClInclude Include="include\Background.h" />
     <ClInclude Include="include\PlayerCharacter.h" />

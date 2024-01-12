@@ -4,7 +4,6 @@
 
 #include <fstream>
 #include <string>
-#include "batch.hpp"
 #include "PlayerCharacter.h"
 #include "Ball.h"
 #include "Wall.h"
@@ -12,10 +11,6 @@
 
 namespace runner
 {
-    static bool LoadFontFile(const std::string& filePath);
-    static sf::Text SetText(std::string textSentence, int size, sf::Vector2f position) ;
-    static sf::Font m_font;
-
    class Application final
    {
       enum class GameState
@@ -32,10 +27,11 @@ namespace runner
       void LoadHighScore();
       void StoreHighScore();
       bool AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2);
-
+      bool LoadFontFile(const std::string& filePath);
+      sf::Text SetText(std::string textSentence, int size, sf::Vector2f position);
+      sf::Font m_font;
     
       sf::RenderWindow m_window;
-      PrimitiveBatch   m_batch;
       bool             m_running = true;
       sf::Clock        m_clock;
       sf::Time         m_deltatime;

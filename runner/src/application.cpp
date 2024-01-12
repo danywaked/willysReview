@@ -4,14 +4,14 @@
 #include <iostream>
 namespace runner
 {
-	bool LoadFontFile(const std::string& filePath) {
+	bool Application::LoadFontFile(const std::string& filePath) {
 		if (m_font.loadFromFile(filePath))
 		{
 			return true;
 		}
 		return false;
 	}
-	sf::Text SetText(std::string textSentence, int size, sf::Vector2f position){
+	sf::Text Application::SetText(std::string textSentence, int size, sf::Vector2f position){
 		sf::Text text;
 		text.setFont(m_font);
 		text.setCharacterSize(size);
@@ -105,7 +105,6 @@ namespace runner
 
 	const void Application::Render()
 	{
-		m_batch.clear();
 		m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });
 
 		if (m_currentGameState == GameState::pregame)
@@ -137,7 +136,6 @@ namespace runner
 			StoreHighScore();
 		}
 		m_window.draw(m_highScoreText);
-		m_batch.present(m_window);
 		m_window.display();
 	}
 
