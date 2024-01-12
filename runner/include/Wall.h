@@ -15,6 +15,6 @@ class Wall
 	sf::Texture texture;
 public:
 	Wall();
-	void Restart();
+	const void Restart();
 	std::vector<Brick> brickVec;
 };

@@ -22,7 +22,7 @@ Ball::Ball()
 	//ballSprite.setScale(1.0f, 1.0f);
 }
 
-void Ball::SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop)
+const void Ball::SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop)
 {
 	worldBounds.width = rectWidth;
 	worldBounds.height = rectHeight;
@@ -53,7 +53,7 @@ void Ball::WorldConstraining(float posX, float posY){
 	}
 }
 
-void Ball::Restart(){
+const void Ball::Restart(){
 	positionX = 500.0f;
 	positionY = 400.0f;
 	direction.x = positionX;

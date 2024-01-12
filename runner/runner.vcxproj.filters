@@ -36,7 +36,7 @@
     <ClCompile Include="src\Wall.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ParallaxBackground.cpp">
+    <ClCompile Include="src\Background.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,7 +59,7 @@
     <ClInclude Include="include\Wall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ParallaxBackground.h">
+    <ClInclude Include="include\Background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -110,7 +110,7 @@
     <ClCompile Include="src\batch.cpp" />
     <ClCompile Include="src\Wall.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ParallaxBackground.cpp" />
+    <ClCompile Include="src\Background.cpp" />
     <ClCompile Include="src\PlayerCharacter.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +119,7 @@
     <ClInclude Include="include\Ball.h" />
     <ClInclude Include="include\batch.hpp" />
     <ClInclude Include="include\Wall.h" />
-    <ClInclude Include="include\ParallaxBackground.h" />
+    <ClInclude Include="include\Background.h" />
     <ClInclude Include="include\PlayerCharacter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

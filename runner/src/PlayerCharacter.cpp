@@ -10,7 +10,7 @@ Player::Player()
 	sprite.setPosition(positionX, positionY);
 }
 
-void Player::SetWorldConstraints(float min, float max) {
+const void Player::SetWorldConstraints(float min, float max) {
 	minPositionX = min;
 	maxPositionX = max;
 };
@@ -37,12 +37,12 @@ void Player::WorldConstrain(){
 	{
 		positionX = 0.0f;
 	}
-	if(positionX >= maxPositionX - 150.0f)
+	if(positionX >= maxPositionX - sprite.getLocalBounds().width)
 	{
-		positionX = maxPositionX - 150.0f;
+		positionX = maxPositionX - sprite.getLocalBounds().width;
 	}
 };
 
-void Player::Restart(){
+const void Player::Restart(){
 	positionX = 500.0f;
 }

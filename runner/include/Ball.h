@@ -11,10 +11,10 @@ class Ball
 	sf::Texture texture;
 public:
 	Ball();
-	void SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop);
+	const void SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop);
 	void BallUpdate(float deltatime);
 	void WorldConstraining(float posX, float posY);
-	void Restart();
+	const void Restart();
 	sf::IntRect worldBounds;
 	sf::Sprite ballSprite;
 	sf::Vector2f direction{positionX,positionY};

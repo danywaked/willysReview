@@ -13,11 +13,11 @@ class Player
 public:
 	sf::Sprite sprite;
 	Player();
-	void SetWorldConstraints(float min, float max);
+	const void SetWorldConstraints(float min, float max);
 	void Update(float deltatime);
 	void Input(float deltatime);
 	void WorldConstrain();
-	void Restart();
+	const void Restart();
 	bool pressedLeft = false;
 	bool pressedRight = false;
 };

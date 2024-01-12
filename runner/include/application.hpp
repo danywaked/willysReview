@@ -9,7 +9,7 @@
 #include "Ball.h"
 #include "Wall.h"
 #include "AssetsManagment.h"
-#include "ParallaxBackground.h"
+#include "Background.h"
 
 namespace runner
 {
@@ -19,14 +19,14 @@ namespace runner
       {
           win, lose, running, pregame
       };
-      void SetUp();
-      bool update();
-      void render();
+      const void SetUp();
+      bool Update();
+      const void Render() ;
       void CollisionCheck();
       void Restart();
-      void on_key_pressed(const sf::Keyboard::Key key);
-      void on_key_released(const sf::Keyboard::Key key);
-      void loadHighScore();
+      void InputPressed(const sf::Keyboard::Key key);
+      void InputRelease(const sf::Keyboard::Key key);
+      void LoadHighScore();
       void StoreHighScore();
       bool AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2);
 
@@ -40,8 +40,8 @@ namespace runner
       Ball             m_ball;
       Wall             m_wall;
       Background       m_background;
-      AssetsManagement m_AssetsManagement;
-      GameState   m_CurrentGameState;
+      AssetsManagement m_assetsManagement;
+      GameState   m_currentGameState;
 
       sf::Font m_font;
 
@@ -57,6 +57,6 @@ namespace runner
 
    public:
        Application() = default;
-       void run();
+       void Run();
    };
 } // !runner
