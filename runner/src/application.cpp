@@ -4,6 +4,22 @@
 #include <iostream>
 namespace runner
 {
+	bool LoadFontFile(const std::string& filePath) {
+		if (m_font.loadFromFile(filePath))
+		{
+			return true;
+		}
+		return false;
+	}
+	sf::Text SetText(std::string textSentence, int size, sf::Vector2f position){
+		sf::Text text;
+		text.setFont(m_font);
+		text.setCharacterSize(size);
+		text.setStyle(sf::Text::Bold);
+		text.setPosition(position);
+		text.setString(textSentence);
+		return text;
+	}
 	void Application::Run()
 	{
 		const sf::VideoMode mode{ 1280, 720 };
@@ -42,18 +58,18 @@ namespace runner
 	{
 		m_currentGameState = GameState::pregame;
 
-		m_assetsManagement.LoadFontFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf");
+		//m_assetsManagement.LoadFontFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf");
 		if (!m_font.loadFromFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf"))
 		{
 			return;
 		}
 
 		// Made simple that function that just set indivual each sf::Text variable for text in the screen
-		m_startMainuText = m_assetsManagement.SetText("Press `space´ to start", 100, sf::Text::Bold, 250, 250);
-		m_winText = m_assetsManagement.SetText("Winner", 50, sf::Text::Bold, 550, 300);
-		m_loseText = m_assetsManagement.SetText("Game Over", 50, sf::Text::Bold, 550, 300);
-		m_scoreText = m_assetsManagement.SetText("Score", 50, sf::Text::Bold, 1100, 5);
-		m_highScoreText = m_assetsManagement.SetText("", 50, sf::Text::Bold, 0, 5);
+		m_startMainuText = SetText("Press `space´ to start", 100, { 250, 250 });
+		m_winText = SetText("Winner", 50, { 550, 300 });
+		m_loseText = SetText("Game Over", 50, { 550, 300 });
+		m_scoreText = SetText("Score", 50, { 1100, 5 });
+		m_highScoreText = SetText("", 50, {0, 5});
 
 		m_currentScore = 0;
 		m_highScore = 0;

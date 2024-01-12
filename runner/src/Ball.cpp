@@ -19,7 +19,6 @@ Ball::Ball()
 	}
 	ballSprite.setTexture(texture);
 	ballSprite.setPosition(positionX, positionY);
-	//ballSprite.setScale(1.0f, 1.0f);
 }
 
 const void Ball::SetUp(int rectWidth, int rectHeight, int rectLeft, int rectTop)

@@ -8,11 +8,14 @@
 #include "PlayerCharacter.h"
 #include "Ball.h"
 #include "Wall.h"
-#include "AssetsManagment.h"
 #include "Background.h"
 
 namespace runner
 {
+    static bool LoadFontFile(const std::string& filePath);
+    static sf::Text SetText(std::string textSentence, int size, sf::Vector2f position) ;
+    static sf::Font m_font;
+
    class Application final
    {
       enum class GameState
@@ -30,6 +33,7 @@ namespace runner
       void StoreHighScore();
       bool AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2);
 
+    
       sf::RenderWindow m_window;
       PrimitiveBatch   m_batch;
       bool             m_running = true;
@@ -40,10 +44,7 @@ namespace runner
       Ball             m_ball;
       Wall             m_wall;
       Background       m_background;
-      AssetsManagement m_assetsManagement;
-      GameState   m_currentGameState;
-
-      sf::Font m_font;
+      GameState        m_currentGameState;
 
       sf::Text m_startMainuText;
       sf::Text m_winText; 

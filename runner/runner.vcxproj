@@ -105,7 +105,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
-    <ClCompile Include="src\AssetsManagment.cpp" />
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\batch.cpp" />
     <ClCompile Include="src\Wall.cpp" />
@@ -115,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\application.hpp" />
-    <ClInclude Include="include\AssetsManagment.h" />
     <ClInclude Include="include\Ball.h" />
     <ClInclude Include="include\batch.hpp" />
     <ClInclude Include="include\Wall.h" />
