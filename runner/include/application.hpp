@@ -8,6 +8,7 @@
 #include "Ball.h"
 #include "Wall.h"
 #include "Background.h"
+#include <string_view>
 
 namespace runner
 {
@@ -17,9 +18,9 @@ namespace runner
       {
           win, lose, running, pregame
       };
-      const void SetUp();
+      void SetUp();
       bool Update();
-      const void Render() ;
+      void Render() const;
       void CollisionCheck();
       void Restart();
       void InputPressed(const sf::Keyboard::Key key);
@@ -37,7 +38,7 @@ namespace runner
       sf::Time         m_deltatime;
 
       Player  m_player;
-      Ball             m_ball;
+      Ball             m_ball = Ball("assets/Ball.png");
       Wall             m_wall;
       Background       m_background;
       GameState        m_currentGameState;

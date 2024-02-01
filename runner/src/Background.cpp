@@ -6,15 +6,21 @@ Background::Background()
 		return;
 	}
 	star.sprite.setTexture(texture);
-	float x = 100;
+	float x = MARGIN_X;
 	float y = -100;
 	for(int i = 0; i < 4; i++)
 	{
-		stars.push_back(star);
+	/*	stars.push_back(star);
 		stars[i].positionY = y;
 		stars[i].sprite.setPosition(x,y);       
 		x += 350;
-		stars[i].sprite.setScale(0.5f, 0.5f);
+		stars[i].sprite.setScale(0.5f, 0.5f);*/
+		x += 350;
+		
+		//stars.emplace_back(x, y, (i < 4) ? 0.5f : 0.3f);
+		
+		//	stars.push_back(Star(x, y, 0.5f));
+		
 	}
 	y = -300;
 	x = 250;
@@ -33,7 +39,7 @@ void Background::Update(float deltatime){
 	fallingSpeed = 125;
 	for (int i = 0; i < 4; i++)
 	{
-		stars[i].sprite.setPosition(stars[i].sprite.getPosition().x, stars[i].positionY += fallingSpeed * deltatime);
+		 stars[i].sprite.setPosition(stars[i].sprite.getPosition().x, stars[i].positionY += fallingSpeed * deltatime);
 		fallingSpeed += 25;
 	}
 	fallingSpeed = 100;

@@ -1,5 +1,5 @@
 #include "Ball.h"
-
+#include <stdexcept>
 float Length(const sf::Vector2f& rhs){
 	return std::sqrtf(rhs.x * rhs.x + rhs.y * rhs.y);
 };
@@ -11,11 +11,11 @@ sf::Vector2f Normalized(const sf::Vector2f& rhs) {
 	return sf::Vector2f{ x, y };
 }
 
-Ball::Ball()
+Ball::Ball(std::string_view texturePath)
 {
-	if (!texture.loadFromFile("assets/Ball.png"))
+	if (!texture.loadFromFile(texturePath.data()))
 	{
-		return;
+		throw std::runtime_error(texturePath.data());
 	}
 	ballSprite.setTexture(texture);
 	ballSprite.setPosition(positionX, positionY);

@@ -61,7 +61,7 @@ namespace runner
 		//m_assetsManagement.LoadFontFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf");
 		if (!m_font.loadFromFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf"))
 		{
-			return;
+			return; //probably shoudl be a throw?
 		}
 
 		// Made simple that function that just set indivual each sf::Text variable for text in the screen
@@ -120,6 +120,7 @@ namespace runner
 			m_window.draw(m_scoreText);
 			m_window.draw(m_player.sprite);
 			m_window.draw(m_ball.ballSprite);
+			
 			for (int i = 0; i < m_wall.brickVec.size(); i++)
 			{
 				m_window.draw(m_wall.brickVec[i].sprite);
@@ -186,7 +187,7 @@ namespace runner
 	void Application::Restart()
 	{
 		m_currentScore = 0;
-		m_ball.Restart();
+		m_ball = Ball();  Restart();
 		m_player.Restart();
 		m_wall.Restart();
 		LoadHighScore();
@@ -201,7 +202,7 @@ namespace runner
 		};
 		if (AxisAlignedBoundingBox(m_player.sprite, m_ball.ballSprite))
 		{
-			m_ball.direction.y = -m_ball.direction.y;
+			m_ball.direction.y *= -1.0f;
 			//std::cout << "hitted a player" << std::endl;
 		}
 
