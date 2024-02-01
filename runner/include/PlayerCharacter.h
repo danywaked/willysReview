@@ -1,6 +1,6 @@
 #pragma once
 
-#include "batch.hpp"
+#include <SFML/Graphics.hpp>
 
 static constexpr float speed = 700.0f;
 static constexpr float positionY = 650.0f;

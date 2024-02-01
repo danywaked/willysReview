@@ -1,6 +1,6 @@
 #pragma once
 
-#include "batch.hpp"
+#include <SFML/Graphics.hpp>
 #include <vector>
 struct Brick
 {

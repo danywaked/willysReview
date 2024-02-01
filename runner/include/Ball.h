@@ -1,6 +1,6 @@
 #pragma once
-#include "batch.hpp"
-	
+#include <SFML/Graphics.hpp>
+
 float Length(const sf::Vector2f& rhs);
 sf::Vector2f Normalized(const sf::Vector2f& rhs);
 
