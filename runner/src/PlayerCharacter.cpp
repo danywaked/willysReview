@@ -1,9 +1,10 @@
 #include "PlayerCharacter.h"
 
-Player::Player()
+Player::Player(std::string_view texturePath)
 {
-	if (!texture.loadFromFile("assets/player.png")) {
-		return;
+	if (!texture.loadFromFile(texturePath.data()))
+	{
+		throw std::runtime_error(texturePath.data());
 	}
 	positionX = 500.0f;
 	sprite.setTexture(texture);

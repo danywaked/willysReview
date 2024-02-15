@@ -16,7 +16,7 @@ class Wall
 	sf::Texture texture;
 	
 public:
-	Wall();
+	Wall(std::string_view texturePath);
 	void Restart();
 	std::vector<Brick> brickVec; //TODO: make this private, give wall the interface the rest of th eapplication needs instead
 	

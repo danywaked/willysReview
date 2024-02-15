@@ -1,9 +1,10 @@
 #include "Wall.h"
 
-Wall::Wall()
+Wall::Wall(std::string_view texturePath)
 {
-	if (!texture.loadFromFile("assets/WhiteHitBrick.png")) {
-		return;
+if (!texture.loadFromFile(texturePath.data()))
+	{
+		throw std::runtime_error(texturePath.data());
 	}
 	Brick b;
 	b.sprite.setTexture(texture);

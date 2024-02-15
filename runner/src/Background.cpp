@@ -1,9 +1,10 @@
 #include "Background.h"
 
-Background::Background()
+Background::Background(std::string_view texturePath)
 {
-	if (!texture.loadFromFile("assets/FallingStar.png")) {
-		return;
+	if (!texture.loadFromFile(texturePath.data()))
+	{
+		throw std::runtime_error(texturePath.data());
 	}
 	star.sprite.setTexture(texture);
 	float x = MARGIN_X;

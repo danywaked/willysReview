@@ -15,6 +15,6 @@ class Background
 	Star star;
 public:
 	std::vector<Star> stars;
-	Background();
+	Background(std::string_view texturePath);
 	void Update(float deltatime);
 };

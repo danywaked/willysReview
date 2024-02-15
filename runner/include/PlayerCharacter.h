@@ -12,7 +12,7 @@ class Player
 	sf::Texture texture;
 public:
 	sf::Sprite sprite;
-	Player();
+	Player(std::string_view texturePath);
 	const void SetWorldConstraints(float min, float max);
 	void Update(float deltatime);
 	void Input(float deltatime);
