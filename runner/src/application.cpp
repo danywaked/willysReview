@@ -4,13 +4,6 @@
 #include <iostream>
 namespace runner
 {
-	bool Application::LoadFontFile(const std::string& filePath) {
-		if (m_font.loadFromFile(filePath))
-		{
-			return true;
-		}
-		return false;
-	}
 	sf::Text Application::SetText(std::string textSentence, int size, sf::Vector2f position){
 		sf::Text text;
 		text.setFont(m_font);
@@ -54,14 +47,13 @@ namespace runner
 		}
 	}
 
-	const void Application::SetUp()
+	void Application::SetUp()
 	{
 		m_currentGameState = GameState::pregame;
 
-		//m_assetsManagement.LoadFontFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf");
 		if (!m_font.loadFromFile("assets/sunny-spells-font/SunnyspellsRegular-MV9ze.otf"))
 		{
-			return; //probably shoudl be a throw?
+			throw std::runtime_error("Unable to load font file");
 		}
 
 		// Made simple that function that just set indivual each sf::Text variable for text in the screen
@@ -96,14 +88,14 @@ namespace runner
 			m_highScoreText.setString("HighScore: " + std::to_string(m_highScore));
 		}
 
-		if (m_wall.brickVec.empty())
+		if (m_wall.WallEmpty())
 		{
 			m_currentGameState = GameState::win;
 		}
 		return m_running;
 	}
 
-	const void Application::Render()
+	void Application::Render()
 	{
 		m_window.clear(sf::Color{ 0x44, 0x55, 0x66, 0xff });
 
@@ -113,18 +105,16 @@ namespace runner
 		}
 		if (m_currentGameState == GameState::running)
 		{
-			for (int i = 0; i < m_background.stars.size(); i++)
+		/*	for (int i = 0; i < m_background.stars.size(); i++)
 			{
 				m_window.draw(m_background.stars[i].sprite);
-			}
+			}*/
+			m_background.Render();
 			m_window.draw(m_scoreText);
 			m_window.draw(m_player.sprite);
 			m_window.draw(m_ball.ballSprite);
 			
-			for (int i = 0; i < m_wall.brickVec.size(); i++)
-			{
-				m_window.draw(m_wall.brickVec[i].sprite);
-			}
+			m_wall.Render();
 		}
 		if (m_currentGameState == GameState::lose)
 		{
@@ -187,7 +177,7 @@ namespace runner
 	void Application::Restart()
 	{
 		m_currentScore = 0;
-		m_ball = Ball();  Restart();
+		//m_ball = Ball(); 
 		m_player.Restart();
 		m_wall.Restart();
 		LoadHighScore();
@@ -206,7 +196,7 @@ namespace runner
 			//std::cout << "hitted a player" << std::endl;
 		}
 
-		for (int i = 0; i < m_wall.brickVec.size(); i++)
+		for (int i = 0; i < m_wall.WallSize(); i++)
 		{
 			if (AxisAlignedBoundingBox(m_wall.brickVec[i].sprite, m_ball.ballSprite))
 			{
@@ -214,7 +204,6 @@ namespace runner
 				m_ball.speed += 10.0f;
 				m_wall.brickVec.erase(m_wall.brickVec.begin() + i);
 				m_currentScore++;
-				//std::cout << "hitted a brick" << std::endl;
 			}
 		}
 		for (int i = 0; i < m_background.stars.size(); i++)

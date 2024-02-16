@@ -3,6 +3,8 @@
 #include <vector>
 
 static float fallingSpeed = 125;
+static float MARGIN_X = 100;
+
 struct Star
 {
 	sf::Sprite sprite;
@@ -11,10 +13,12 @@ struct Star
 
 class Background
 {
+	sf::RenderWindow render;
 	sf::Texture texture;
 	Star star;
 public:
 	std::vector<Star> stars;
 	Background(std::string_view texturePath);
+	void Render();
 	void Update(float deltatime);
 };

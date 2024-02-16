@@ -6,32 +6,51 @@ if (!texture.loadFromFile(texturePath.data()))
 	{
 		throw std::runtime_error(texturePath.data());
 	}
-	Brick b;
-	b.sprite.setTexture(texture);
-	b.sprite.setColor(sf::Color::Red);
+	sf::Sprite s;
+	s.setTexture(texture);
+	s.setColor(sf::Color::Red);
 
 	float x = 0;
 	float y = 100;
 	for (int i = 0; i < 13; ++i) {
 		//use the Brick constructor! Don't two-step initialize...
 		//brickVec.emplace_back(x, y);
-		brickVec.push_back(b);
-		brickVec[i].positionX = x;
-		brickVec[i].positionY = y;
+		brickVec.push_back(s);
 		x += 100;
-		brickVec[i].sprite.setPosition(brickVec[i].positionX, brickVec[i].positionY);
+		brickVec[i].setPosition(x,y);
 	};
 }
+
+const size_t Wall::WallSize() const noexcept
+{
+	return brickVec.size();
+}
+
+bool Wall::WallEmpty()
+{
+	return brickVec.empty();
+}
 	
-const void Wall::Restart(){
+ void Wall::Restart()
+{
 	brickVec.clear();
 	float x = 0;
 	float y = 100;
+	float x = 0;
+	float y = 100;
+	sf::Sprite s;
 	for (int i = 0; i < 13; ++i) {
-		brickVec.push_back(b);
-		brickVec[i].positionX = x;
-		brickVec[i].positionY = y;
+	
+		brickVec.push_back(s);
 		x += 100;
-		brickVec[i].sprite.setPosition(brickVec[i].positionX, brickVec[i].positionY);
+		brickVec[i].setPosition(x, y);
 	};
 }
+
+ void Wall::Render()
+ {
+	 for (int i = 0; i < brickVec.size(); i++)
+	 {
+		 render.draw(brickVec[i]);
+	 }
+ }

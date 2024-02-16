@@ -1,5 +1,7 @@
 #include "Ball.h"
 #include <stdexcept>
+
+
 float Length(const sf::Vector2f& rhs){
 	return std::sqrtf(rhs.x * rhs.x + rhs.y * rhs.y);
 };

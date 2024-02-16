@@ -36,6 +36,14 @@ Background::Background(std::string_view texturePath)
 	}
 }
 
+void Background::Render() 
+{
+	for (int i = 0; i < stars.size(); i++)
+	{
+		render.draw(stars[i].sprite);
+	}
+}
+
 void Background::Update(float deltatime){
 	fallingSpeed = 125;
 	for (int i = 0; i < 4; i++)

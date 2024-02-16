@@ -20,7 +20,7 @@ namespace runner
       };
       void SetUp();
       bool Update();
-      void Render() const;
+      void Render();
       void CollisionCheck();
       void Restart();
       void InputPressed(const sf::Keyboard::Key key);
@@ -28,7 +28,6 @@ namespace runner
       void LoadHighScore();
       void StoreHighScore();
       bool AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2);
-      bool LoadFontFile(const std::string& filePath);
       sf::Text SetText(std::string textSentence, int size, sf::Vector2f position);
       sf::Font m_font;
     
