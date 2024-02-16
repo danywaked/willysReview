@@ -185,11 +185,6 @@ namespace runner
 
 	void Application::CollisionCheck()
 	{
-		float r1RightEdge = m_player.sprite.getPosition().y + m_player.sprite.getTexture()->getSize().y;
-		if (r1RightEdge >= m_ball.ballSprite.getPosition().y)
-		{
-			std::cout << " right side someting" << std::endl;
-		};
 		if (AxisAlignedBoundingBox(m_player.sprite, m_ball.ballSprite))
 		{
 			m_ball.direction.y *= -1.0f;
