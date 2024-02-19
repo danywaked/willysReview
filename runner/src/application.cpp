@@ -71,6 +71,9 @@ namespace runner
 		m_highScore = 0;
 		m_minOfScreen = 0.0f;
 		LoadHighScore();
+		
+		m_wall = Wall("assets/WhiteHitBrick.png");
+		m_background = Background("assets/FallingStar.png");
 
 		m_player.SetWorldConstraints(m_minOfScreen, (float)m_window.getSize().x);
 		m_ball.SetUp(m_window.getSize().x, m_window.getSize().y, (int)m_minOfScreen, (int)m_minOfScreen);
@@ -113,12 +116,12 @@ namespace runner
 			{
 				m_window.draw(m_background.stars[i].sprite);
 			}*/
+			m_wall.Render();
 			m_background.Render();
 			m_window.draw(m_scoreText);
 			m_window.draw(m_player.sprite);
 			m_window.draw(m_ball.ballSprite);
 			
-			m_wall.Render();
 		}
 		if (m_currentGameState == GameState::lose)
 		{
@@ -205,11 +208,11 @@ namespace runner
 				m_currentScore++;
 			}
 		}
-		for (int i = 0; i < m_background.stars.size(); i++)
+		for (int i = 0; i < m_background.starPositions.size(); i++)
 		{
-			if (m_background.stars[i].positionY >= m_window.getSize().y)
+			if (m_background.starPositions[i].y >= m_window.getSize().y)
 			{
-				m_background.stars[i].positionY = -100;
+				m_background.starPositions[i].y = -100;
 			}
 		}
 

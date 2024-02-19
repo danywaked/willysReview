@@ -10,7 +10,7 @@ bool Wall::AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2)
 	return collisionX && collisionY;
 }
 
-Wall::Wall(std::string_view texturePath)
+Wall::Wall(const std::string_view texturePath)
 {
 if (!texture.loadFromFile(texturePath.data()))
 	{

@@ -23,7 +23,8 @@ class Wall
 
 	bool AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2);
 public:
-	Wall(std::string_view texturePath);
+	Wall(const std::string_view texturePath);
+
 	const size_t WallSize() const noexcept;
 	bool CheckCollisionWithBall(sf::Sprite& ballSprite);
 	void EraseBrick();

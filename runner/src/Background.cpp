@@ -1,46 +1,34 @@
 #include "Background.h"
 
-Background::Background(std::string_view texturePath)
+Background::Background(const std::string_view texturePath)
 {
 	if (!texture.loadFromFile(texturePath.data()))
 	{
 		throw std::runtime_error(texturePath.data());
 	}
-	star.sprite.setTexture(texture);
-	float x = MARGIN_X;
+	sprite.setTexture(texture);
 	float y = -100;
+
 	for(int i = 0; i < 4; i++)
 	{
-	/*	stars.push_back(star);
-		stars[i].positionY = y;
-		stars[i].sprite.setPosition(x,y);       
-		x += 350;
-		stars[i].sprite.setScale(0.5f, 0.5f);*/
-		x += 350;
-		
-		//stars.emplace_back(x, y, (i < 4) ? 0.5f : 0.3f);
-		
-		//	stars.push_back(Star(x, y, 0.5f));
-		
+		sf::Vector2f pos(i * 150.0f, -100.0f);
+		starPositions.push_back(pos);
+		sprite.setScale(0.5f, 0.5f);
 	}
-	y = -300;
-	x = 250;
-
 	for (int i = 4; i < 7; i++)
 	{
-		stars.push_back(star);
-		stars[i].positionY = y;
-		stars[i].sprite.setPosition(x, y);
-		x += 350;
-		stars[i].sprite.setScale(0.3f, 0.3f);
+		sf::Vector2f pos(i * 150.0f, -100.0f);
+		starPositions.push_back(pos);
+		sprite.setScale(0.3f, 0.3f);
 	}
 }
 
 void Background::Render() 
 {
-	for (int i = 0; i < stars.size(); i++)
+	for (auto& position : starPositions)
 	{
-		render.draw(stars[i].sprite);
+		sprite.setPosition(position);
+		render.draw(sprite);
 	}
 }
 
@@ -48,13 +36,13 @@ void Background::Update(float deltatime){
 	fallingSpeed = 125;
 	for (int i = 0; i < 4; i++)
 	{
-		 stars[i].sprite.setPosition(stars[i].sprite.getPosition().x, stars[i].positionY += fallingSpeed * deltatime);
+		 starPositions[i].y += fallingSpeed * deltatime;
 		fallingSpeed += 25;
 	}
 	fallingSpeed = 100;
-	for (int i = 4; i < stars.size(); i++)
+	for (int i = 4; i < starPositions.size(); i++)
 	{
-		stars[i].sprite.setPosition(stars[i].sprite.getPosition().x, stars[i].positionY += fallingSpeed * deltatime);
+		starPositions[i].y += fallingSpeed * deltatime;
 		fallingSpeed -= 15;
 	}
 }
