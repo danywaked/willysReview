@@ -36,10 +36,10 @@ namespace runner
       sf::Clock        m_clock;
       sf::Time         m_deltatime;
 
-      Player  m_player;
+      Player           m_player = Player("assets/player.png");
       Ball             m_ball = Ball("assets/Ball.png");
-      Wall             m_wall;
-      Background       m_background;
+      Wall             m_wall = Wall("assets/WhiteHitBrick.png");
+      Background       m_background = Background("assets/FallingStar.png");
       GameState        m_currentGameState;
 
       sf::Text m_startMainuText;
@@ -53,7 +53,7 @@ namespace runner
       //Keep the state through enum instead of bool
 
    public:
-       Application() = default;
+       Application() ;
        void Run();
    };
 } // !runner

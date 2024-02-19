@@ -13,6 +13,10 @@ namespace runner
 		text.setString(textSentence);
 		return text;
 	}
+	Application::Application()
+	{
+
+	}
 	void Application::Run()
 	{
 		const sf::VideoMode mode{ 1280, 720 };
@@ -193,11 +197,11 @@ namespace runner
 
 		for (int i = 0; i < m_wall.WallSize(); i++)
 		{
-			if (AxisAlignedBoundingBox(m_wall.brickVec[i].sprite, m_ball.ballSprite))
+			if (m_wall.CheckCollisionWithBall(m_ball.ballSprite))
 			{
+				m_wall.EraseBrick();
 				m_ball.direction.y = -m_ball.direction.y;
 				m_ball.speed += 10.0f;
-				m_wall.brickVec.erase(m_wall.brickVec.begin() + i);
 				m_currentScore++;
 			}
 		}

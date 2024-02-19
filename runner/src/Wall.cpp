@@ -1,5 +1,15 @@
 #include "Wall.h"
 
+bool Wall::AxisAlignedBoundingBox(sf::Sprite& box1, sf::Sprite& box2)
+{
+	bool collisionX = box1.getPosition().x + box1.getTexture()->getSize().x >= box2.getPosition().x &&
+		box2.getPosition().x + box2.getTexture()->getSize().x >= box1.getPosition().x;
+
+	bool collisionY = box1.getPosition().y + box1.getTexture()->getSize().y >= box2.getPosition().y &&
+		box2.getPosition().y + box2.getTexture()->getSize().y >= box1.getPosition().y;
+	return collisionX && collisionY;
+}
+
 Wall::Wall(std::string_view texturePath)
 {
 if (!texture.loadFromFile(texturePath.data()))
@@ -26,24 +36,22 @@ const size_t Wall::WallSize() const noexcept
 	return brickVec.size();
 }
 
-void Wall::CheckPlayerCollision()
+bool Wall::CheckCollisionWithBall(sf::Sprite& ballSprite)
 {
-
-	if (AxisAlignedBoundingBox(m_player.sprite, m_ball.ballSprite))
+	/*for (int i = 0; i < brickVec.size(); i++)
 	{
-		m_ball.direction.y *= -1.0f;
-		//std::cout << "hitted a player" << std::endl;
+		return AxisAlignedBoundingBox(brickVec[i], ballSprite);
 	}
+	return false;*/
+	return false;
+}
 
-	for (int i = 0; i < WallSize(); i++)
+void Wall::EraseBrick()
+{
+	for (int i = 0; i < brickVec.size(); i++)
 	{
-		if (AxisAlignedBoundingBox(brickVec[i], m_ball.ballSprite))
-		{
-			m_ball.direction.y = -m_ball.direction.y;
-			m_ball.speed += 10.0f;
-			brickVec.erase(brickVec.begin() + i);
-			//m_currentScore++;
-		}
+		brickVec.erase(brickVec.begin() + i);
+
 	}
 }
 
@@ -55,8 +63,6 @@ bool Wall::WallEmpty()
  void Wall::Restart()
 {
 	brickVec.clear();
-	float x = 0;
-	float y = 100;
 	float x = 0;
 	float y = 100;
 	sf::Sprite s;
